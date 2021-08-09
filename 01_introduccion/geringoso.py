@@ -2,8 +2,9 @@
 # según corresponda luego de cada vocal.
 
 cadena = 'Geringoso'
+vocales = ['a', 'e', 'i', 'o', 'u']
 
-for vocal in ['a', 'e', 'i', 'o', 'u']:
+for vocal in vocales:
   reemplazo = vocal + 'p' + vocal
   cadena = cadena.replace(vocal, reemplazo)
 
