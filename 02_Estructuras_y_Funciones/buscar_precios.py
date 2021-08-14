@@ -1,10 +1,12 @@
 def buscar_precio(fruta):
     with open('../Data/precios.csv', "rt") as file:
         for line in file:
-            nombre_fruta, precio = line.split(',')
-            if fruta in nombre_fruta:
-                print("El precio de un cajon de {0} es: {1}".format(fruta, precio))
-                return
+            line = line.rstrip()
+            if line:
+                nombre_fruta, precio = line.rstrip().split(',')
+                if fruta in nombre_fruta:
+                    print("El precio de un cajon de {0} es: {1}".format(fruta, precio))
+                    return
     print("{} no figura en el listado de precios.".format(fruta))
 
 buscar_precio('Frambuesa')
