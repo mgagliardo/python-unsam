@@ -8,7 +8,6 @@ def costo_camion(nombre_archivo):
         encabezados = next(filas)
         for n_fila, fila in enumerate(filas, start=1):
             record = dict(zip(encabezados, fila))
-            print(record)
             try:
                 ncajones = int(record['cajones'])
                 precio = float(record['precio'])

@@ -49,26 +49,8 @@ def evaluar_diferencia(recaudacion, costo):
         print("Uyy, hubo perdida!: ${}".format(round(diferencia, 2)))
 
 
-def imprimir_tabla(datos):
-    # Se imprimen directamente los encabezados
-    # Saco el dato de la lista 
-    encabezados = datos.pop(0)
-    encabezados_str_format = "%10s " * len(encabezados)
-    print(encabezados_str_format % encabezados)
-    
-    # Saco el dato de la lista 
-    separadores = datos.pop(0)
-    print(separadores)
-    
-    for nombre, cajones, precio, cambio in datos:
-        # Convierto a str con un $ adelante antes del print
-        precio = "$" + "{:.2f}".format(precio)
-        print(f'{nombre:>10s} {cajones:>10d} {precio:>10s} {cambio:>10.2f}')
-
-
-def hacer_informe(encabezados, lista_cajones, dict_precios):
-    separadores_str_format = "---------- " * len(encabezados)
-    informe = [encabezados, separadores_str_format]
+def hacer_informe(lista_cajones, dict_precios):
+    informe = []
     for cajon in lista_cajones:
         informe.append(
           tuple(cajon.values()) + (float(dict_precios[cajon['nombre']]),)
@@ -76,15 +58,22 @@ def hacer_informe(encabezados, lista_cajones, dict_precios):
     return informe
 
 
+def imprimir_tabla(encabezados, datos):
+    print('%10s %10s %10s %10s' % encabezados)
+    print('---------- ---------- ---------- ----------')
+    for nombre, cajones, precio, cambio in datos:
+        precio = "$" + "{:.2f}".format(precio)
+        print(f'{nombre:>10s} {cajones:>10d} {precio:>10s} {cambio:>10.2f}')
+
 cajones_camion = leer_camion('../Data/camion.csv')
 precios = leer_precios('../Data/precios.csv')
 headers = ('Nombre', 'Cajones', 'Precio', 'Cambio')
-informe = hacer_informe(headers, cajones_camion, precios)
+informe = hacer_informe(cajones_camion, precios)
 
-# imprimir_tabla(informe)
+# imprimir_tabla(headers, informe)
 
-#     Nombre    Cajones     Precio     Cambio 
-# ---------- ---------- ---------- ---------- 
+#     Nombre    Cajones     Precio     Cambio
+# ---------- ---------- ---------- ----------
 #       Lima        100     $32.20      40.22
 #    Naranja         50     $91.10     106.28
 #      Caqui        150    $103.44     105.46
