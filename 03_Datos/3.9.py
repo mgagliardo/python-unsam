@@ -14,9 +14,11 @@ def costo_camion(nombre_archivo):
                 precio = float(record['precio'])
                 costo_total += ncajones * precio
             except ValueError:
+                print(f'Fila {n_fila}: No pude interpretar: {fila}')
+                continue
     return costo_total
 
-# costo = costo_camion('../Data/missing.csv')
+
 costo = costo_camion('../Data/fecha_camion.csv')
-print(f"Costo total: {costo}")
+# print(f"Costo total: {costo}")
 # Costo total: 47671.15
