@@ -1,7 +1,6 @@
 import csv
+from collections import Counter
 from pprint import pprint
-
-# 3.18
 
 def leer_parque(nombre_archivo, parque):
     arboles_parque = []
@@ -20,23 +19,18 @@ def leer_parque(nombre_archivo, parque):
                 print(f'Fila {n_fila}: No pude interpretar: {fila}')
                 continue
     return arboles_parque
-            
 
-nombre_archivo = '../Data/arbolado-en-espacios-verdes.csv'
-nombre_parque = 'AVELLANEDA'
-
-# pprint(leer_parque(nombre_archivo, nombre_parque))
-# No pongo el output dado que es bastante grande.
-
-# 3.19
-
-def especies(lista_arboles):
-    conjunto_especies = set()
+# 3.22
+def obtener_inclinaciones(lista_arboles, especie):
+    inclinacion_max = 0
     for arbol in lista_arboles:
-        conjunto_especies.add(arbol['nombre_com'])
-    return conjunto_especies
+        if especie in arbol['nombre_com']:
+            inclinacion_arbol = float(arbol['inclinacio'])
+            if inclinacion_arbol > inclinacion_max:
+                inclinacion_max = inclinacion_arbol
+    return inclinacion_max
 
-# lista_arboles = leer_parque(nombre_archivo, nombre_parque)
+# nombre_archivo = '../Data/arbolado-en-espacios-verdes.csv'
 
-# pprint(especies(lista_arboles))
-# No pongo el output dado que es bastante grande.
+# lista_arboles = leer_parque(nombre_archivo, "GENERAL PAZ")
+# pprint(obtener_inclinaciones(lista_arboles, 'Casuarina'))

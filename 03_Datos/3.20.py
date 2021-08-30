@@ -1,7 +1,6 @@
 import csv
+from collections import Counter
 from pprint import pprint
-
-# 3.18
 
 def leer_parque(nombre_archivo, parque):
     arboles_parque = []
@@ -20,23 +19,22 @@ def leer_parque(nombre_archivo, parque):
                 print(f'Fila {n_fila}: No pude interpretar: {fila}')
                 continue
     return arboles_parque
-            
 
-nombre_archivo = '../Data/arbolado-en-espacios-verdes.csv'
-nombre_parque = 'AVELLANEDA'
-
-# pprint(leer_parque(nombre_archivo, nombre_parque))
-# No pongo el output dado que es bastante grande.
-
-# 3.19
-
-def especies(lista_arboles):
-    conjunto_especies = set()
+# 3.20
+def contar_ejemplares(lista_arboles):
+    contador_arboles = Counter()
     for arbol in lista_arboles:
-        conjunto_especies.add(arbol['nombre_com'])
-    return conjunto_especies
+        contador_arboles[arbol['nombre_com']] += 1
+    return contador_arboles
 
-# lista_arboles = leer_parque(nombre_archivo, nombre_parque)
 
-# pprint(especies(lista_arboles))
-# No pongo el output dado que es bastante grande.
+# nombre_archivo = '../Data/arbolado-en-espacios-verdes.csv'
+
+# lista_arboles = leer_parque(nombre_archivo, "GENERAL PAZ")
+# pprint(contar_ejemplares(lista_arboles).most_common(5))
+
+# lista_arboles = leer_parque(nombre_archivo, "ANDES, LOS")
+# pprint(contar_ejemplares(lista_arboles).most_common(5))
+
+# lista_arboles = leer_parque(nombre_archivo, "CENTENARIO")
+# pprint(contar_ejemplares(lista_arboles).most_common(5))
