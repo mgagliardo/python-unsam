@@ -1,7 +1,7 @@
 import random
 
 def tirar(cant_dados):
-    return [random.randint(1,6) for _ in range(cant_dados)]
+    return random.choices(range(1,6), k=cant_dados)
 
 def es_generala(tirada):
     # Convierto la lista a un set
@@ -15,26 +15,34 @@ def contar_dados_repetidos(dados):
         dados_contados[d] = dados.count(d) > 1
     return dados_contados
 
+def sacar_dado_y_tirar(dados_en_mesa, nro_dado):
+    # Remueve todos los dados que estan repetidos
+    dados_sin_repetir = [d for d in dados_en_mesa if d != nro_dado]
+    return dados_sin_repetir
+
 def repetir_3_tiradas():
-    # Inicio con 5 dados
-    dado_repetido = 0
+    dado_repetido = None
+    # Inicio tirando dados
     dados_en_mesa = tirar(5)
-    # range(2) dado que ya tire la primera vez
-    for _ in range(2):
-        print(f'dados_en_mesa: {dados_en_mesa}')
+    # range(2) dado que ya una vez
+    for _ in range(3):  
         dados_contados = contar_dados_repetidos(dados_en_mesa)
-        print(f'dados_contados: {dados_contados}')
         for nro_dado, esta_repetido in dados_contados.items():
             # Busca el dado que haya salido mas de una vez
             if esta_repetido:
                 if nro_dado == dado_repetido:
-                    # Remueve todos los dados que estan repetidos
-                    dados_sin_repetir = [d for d in dados_en_mesa if d != nro_dado]
-                    print(f'dados_sin_repetir: {dados_sin_repetir}')
-                    dados_en_mesa = tirar(len(dados_sin_repetir))
+                    dado_repetido = nro_dado
+                    dados_en_mesa = sacar_dado_y_tirar(dados_en_mesa, dado_repetido)
+                    print(dados_en_mesa)
+                    break
+                elif dado_repetido == None:
+                    dado_repetido = nro_dado
+                    dados_en_mesa = sacar_dado_y_tirar(dados_en_mesa, dado_repetido)
+                    print(dados_en_mesa)
                     break
                 else:
                     continue
+        dados_en_mesa = tirar(len(dados_en_mesa))
     return es_generala(dados_en_mesa)
 
 
