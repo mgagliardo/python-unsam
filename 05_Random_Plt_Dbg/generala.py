@@ -15,8 +15,9 @@ def contar_dados_repetidos(dados):
     # Ej.: {1: 0, 2: 1, 3: 2, 4: 1, 5: 1}
     dados_contados = {}
     for d in range(1, 6):
-        dados_contados[d] = dados.count(d)
-    return dados_contados
+        if dados.count(d) > 1:
+            dados_contados[d] = dados.count(d)
+            return dados_contados
 
 def sacar_dados_repetidos(dados_en_mesa, nro_dado):
     # Devuelve una lista que no contiene al dado `nro_dado`
