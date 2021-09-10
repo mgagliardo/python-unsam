@@ -24,7 +24,6 @@ def cuantas_figus(figus_total):
     while album_incompleto(nuevo_album):
         nuevo_album[comprar_figu(figus_total)] = 1
         contador += 1
-    # Devuelvo * 5 dado que es la cantidad de figuritas
     return contador
 
 # 5.14
