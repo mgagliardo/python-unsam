@@ -6,7 +6,6 @@ def medir_temp(n):
     temperaturas = np.empty((n,))
     for i in range(n):
         temperaturas[i] = round(random.normalvariate(37.5, 0.2), 3)
-    print(temperaturas)
     np.save('../Data/temperaturas.npy', temperaturas)
     return temperaturas
 
