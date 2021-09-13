@@ -6,7 +6,6 @@ def busqueda_binaria(lista, x, verbose = False):
     '''
     if verbose:
         print(f'[DEBUG] izq |der |medio')
-    pos = -1 # Inicializo respuesta, el valor no fue encontrado
     izq = 0
     der = len(lista) - 1
     while izq <= der:

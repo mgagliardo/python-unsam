@@ -6,28 +6,21 @@ def busqueda_binaria(lista, x, verbose = False):
     '''
     if verbose:
         print(f'[DEBUG] izq |der |medio')
+    pos = -1 # Inicializo respuesta, el valor no fue encontrado
     izq = 0
     der = len(lista) - 1
+    comparaciones = 0
     while izq <= der:
         medio = (izq + der) // 2
         if verbose:
             print(f'[DEBUG] {izq:3d} |{der:>3d} |{medio:3d}')
         if lista[medio] == x:
-            return medio     # elemento encontrado!
+            comparaciones += 1
+            pos = medio     # elemento encontrado!
         if lista[medio] > x:
+            comparaciones += 1
             der = medio - 1 # descarto mitad derecha
         else:               # if lista[medio] < x:
+            comparaciones += 1
             izq = medio + 1 # descarto mitad izquierda
-    return izq
-
-def donde_insertar(lista, x):
-    return busqueda_binaria(lista, x)
-
-def insertar(lista, x):
-    posicion_en_lista = donde_insertar(lista, x)
-    if posicion_en_lista == len(lista): # Catch si el índice está fuera de la lista
-        lista.append(x)
-    else:
-        if lista[posicion_en_lista] != x:
-            lista.insert(posicion_en_lista, x)
-    return posicion_en_lista
+    return pos, comparaciones
