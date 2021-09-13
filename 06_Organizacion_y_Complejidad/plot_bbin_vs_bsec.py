@@ -19,7 +19,7 @@ def busqueda_binaria(lista, x, verbose = False):
     '''
     if verbose:
         print(f'[DEBUG] izq |der |medio')
-    pos = -1 # Inicializo respuesta, el valor no fue encontrado
+    pos = -1
     izq = 0
     der = len(lista) - 1
     comparaciones = 0
@@ -29,13 +29,13 @@ def busqueda_binaria(lista, x, verbose = False):
             print(f'[DEBUG] {izq:3d} |{der:>3d} |{medio:3d}')
         if lista[medio] == x:
             comparaciones += 1
-            pos = medio     # elemento encontrado!
+            pos = medio
         if lista[medio] > x:
             comparaciones += 1
-            der = medio - 1 # descarto mitad derecha
-        else:               # if lista[medio] < x:
+            der = medio - 1
+        else:
             comparaciones += 1
-            izq = medio + 1 # descarto mitad izquierda
+            izq = medio + 1
     return pos, comparaciones
 
 def busqueda_secuencial_(lista, x):

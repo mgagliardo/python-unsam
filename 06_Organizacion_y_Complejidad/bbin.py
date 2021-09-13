@@ -13,11 +13,11 @@ def busqueda_binaria(lista, x, verbose = False):
         if verbose:
             print(f'[DEBUG] {izq:3d} |{der:>3d} |{medio:3d}')
         if lista[medio] == x:
-            return medio     # elemento encontrado!
+            return medio
         if lista[medio] > x:
-            der = medio - 1 # descarto mitad derecha
-        else:               # if lista[medio] < x:
-            izq = medio + 1 # descarto mitad izquierda
+            der = medio - 1
+        else:
+            izq = medio + 1
     return izq
 
 def donde_insertar(lista, x):
@@ -25,7 +25,7 @@ def donde_insertar(lista, x):
 
 def insertar(lista, x):
     posicion_en_lista = donde_insertar(lista, x)
-    if posicion_en_lista == len(lista): # Catch si el índice está fuera de la lista
+    if posicion_en_lista == len(lista):
         lista.append(x)
     else:
         if lista[posicion_en_lista] != x:

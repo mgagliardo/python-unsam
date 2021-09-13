@@ -16,5 +16,5 @@ def costo_camion(nombre_archivo):
 
 
 costo = costo_camion('../Data/fecha_camion.csv')
-print(f"Costo total $: {costo}")
+# print(f"Costo total $: {costo}")
 # Costo total: 47671.15

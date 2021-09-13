@@ -27,5 +27,4 @@ def parse_csv(nombre_archivo, select=None, types=None, has_headers=True):
             else:
                 registro = tuple(fila)
             registros.append(registro)
-
     return registros
