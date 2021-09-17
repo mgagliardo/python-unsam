@@ -1,6 +1,6 @@
 import csv
 
-def parse_csv(nombre_archivo, select=None, types=None, has_headers=True):
+def parse_csv(nombre_archivo, select=None, types=None, has_headers=True, silence_errors=False):
     '''
     Parsea un archivo CSV en una lista de registros.
     Se puede seleccionar sólo un subconjunto de las columnas, determinando el parámetro select, que debe ser una lista de nombres de las columnas a considerar.
@@ -30,8 +30,9 @@ def parse_csv(nombre_archivo, select=None, types=None, has_headers=True):
                 else:
                     registro = tuple(fila)
             except ValueError as e:
-                print(f"Fila {n_fila + 1}: No pude convertir {fila}")
-                print(f"Fila {n_fila + 1}: Motivo: {e}")
+                if not silence_errors:
+                    print(f"Fila {n_fila + 1}: No pude convertir {fila}")
+                    print(f"Fila {n_fila + 1}: Motivo: {e}")
                 continue
             registros.append(registro)
     return registros
