@@ -48,11 +48,11 @@ def informe_camion(nombre_archivo_camion, nombre_archivo_precios):
 
 
 #%%
-# files = ['../Data/camion.csv', '../Data/camion2.csv']
-# for name in files:
-#     print(f'{name:-^43s}')
-#     informe_camion(name, '../Data/precios.csv')
-#     print()
+files = ['../Data/camion.csv', '../Data/camion2.csv']
+for name in files:
+    print(f'{name:-^43s}')
+    informe_camion(name, '../Data/precios.csv')
+    print()
 #%%
 
 # Output:
