@@ -3,7 +3,7 @@ import csv
 def parse_csv(file_obj, select=None, types=None, has_headers=True, silence_errors=False):
     '''
     Parsea un archivo CSV en una lista de registros.
-    Se p/uede seleccionar sólo un subconjunto de las columnas, determinando el parámetro select, que debe ser una lista de nombres de las columnas a considerar.
+    Se puede seleccionar sólo un subconjunto de las columnas, determinando el parámetro select, que debe ser una lista de nombres de las columnas a considerar.
     '''
     filas = csv.reader(list(file_obj))
     if select and has_headers == False:
