@@ -60,6 +60,6 @@ def informe_camion(archivo_camion, archivo_precios, fmt='txt'):
 def f_principal(argumentos):
     informe_camion(argumentos[1], argumentos[2], argumentos[3])
 
-if __name__ == '__main__':
-    import sys
-    f_principal(sys.argv)
+# if __name__ == '__main__':
+#     import sys
+#     f_principal(sys.argv)
