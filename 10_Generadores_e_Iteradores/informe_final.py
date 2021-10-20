@@ -42,7 +42,7 @@ def imprimir_informe(data_informe, formateador):
     con (nombre, cajones, precio, diferencia) 
     '''
     formateador.encabezado(['Nombre', 'Cantidad', 'Precio', 'Cambio'])
-    for nombre, cajones, precio, cambio in   data_informe:
+    for nombre, cajones, precio, cambio in data_informe:
         rowdata = [nombre, str(cajones), f'{precio:0.2f}', f'{cambio:0.2f}']
         formateador.fila(rowdata)
 

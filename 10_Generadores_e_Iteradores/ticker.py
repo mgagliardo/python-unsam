@@ -1,34 +1,32 @@
-from vigilante import vigilar
 import csv
+from vigilante import vigilar
 
-
-def filtrar_datos(rows, nombres):
-    for row in rows:
-        if row['nombre'] in nombres:
-            yield row
-
-def cambiar_tipo(rows, types):
-    for row in rows:
-        yield [func(val) for func, val in zip(types, row)]
 
 def hace_dicts(rows, headers):
-    for row in rows:
-        yield dict(zip(headers, row))
+    return (dict(zip(headers, row)) for row in rows)
 
 def elegir_columnas(rows, indices):
-    for row in rows:
-        yield [row[index] for index in indices]
+    return ((row[index].strip() for index in indices) for row in rows)
 
 def parsear_datos(lines):
     rows = csv.reader(lines)
     rows = elegir_columnas(rows, [0, 1, 2])
-    rows = cambiar_tipo(rows, [str, float, int])
     rows = hace_dicts(rows, ['nombre', 'precio', 'volumen'])
     return rows
 
-def ticker(camion_file, log_file, fmt):
+def ticker(camion_file, log_file, fmt="txt"):
     import informe_final
+    from formato_tabla import crear_formateador
     camion = informe_final.leer_camion(camion_file)
     rows = parsear_datos(vigilar(log_file))
-    rows = filtrar_datos(rows, camion)
-    informe_final.imprimir_informe(rows, fmt)
+    rows = (row for row in rows if row['nombre'] in camion)
+    formateador = crear_formateador(fmt)
+    formateador.encabezado(['Nombre', 'Precio', 'Volumen'])
+    for row in rows:
+        formateador.fila(row.values())
+
+# if __name__ == '__main__':
+#     camion_file = '../Data/camion.csv'
+#     log_file = '../Data/mercadolog.csv'
+#     fmt = 'txt'
+#     ticker(camion_file, log_file, fmt)
