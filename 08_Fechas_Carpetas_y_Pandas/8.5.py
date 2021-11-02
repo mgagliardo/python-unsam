@@ -27,7 +27,8 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         directorio = sys.argv[1]
         if os.path.isdir(directorio):
-            print(f"Los archivos del directorio {directorio} son {archivos_png(directorio)}")
+            archivos_png(directorio)
+            # print(f"Los archivos del directorio {directorio} son {archivos_png(directorio)}")
         else:
             mensaje_ayuda()
     else:

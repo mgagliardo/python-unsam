@@ -24,7 +24,7 @@ def get_datasets(df_parques, df_veredas, tipos, cols):
 
 
 def comparar_especies(veredas, parques):
-    directorio = '../Data/'
+    directorio = 'Data'
     fname_v = os.path.join(directorio, veredas)
     df_veredas = pd.read_csv(fname_v)
     fname_p = os.path.join(directorio, parques)
