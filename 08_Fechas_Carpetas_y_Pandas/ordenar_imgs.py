@@ -12,19 +12,16 @@ def archivos_png(directorio):
 def procesar_nombre(fname):
     fecha = fname.split('_')[-1].split('.')[0]
     fecha_mod = datetime(year = int(fecha[0:4]), month = int(fecha[4:6]), day = int(fecha[6:8]))
-    return fname.replace(fecha, fecha_mod)
+    fname = fname.replace(fname.split('/')[-1], fname.split('/')[-1].split('_')[0] + '.png')
+    return fecha_mod, fname
 
 def procesar(fname):
     for archivo in fname:
-        print(archivo)
-        fecha = archivo[-12:-4]
-        fecha_mod = datetime(year = int(fecha[0:4]), month = int(fecha[4:6]), day = int(fecha[6:8]))
+        fecha_mod, name = procesar_nombre(archivo)
         ts_mod = fecha_mod.timestamp()
-        direccion = os.path.join(root, name)
-        print(direccion)
-        os.utime(direccion, (ts_mod, ts_mod))
-        os.rename(direccion, direccion[:-13] + '.png')
-    return os.listdir(ruta)
+        os.utime(name, (ts_mod, ts_mod))
+        os.rename(fname, name)
+        
 
 def crear_carpeta(ruta, carpeta):
     try:
@@ -38,7 +35,7 @@ def ordenar(ruta):
     crear_carpeta(ruta, carpeta_nueva)
     archivos = archivos_png(ruta)
     print(archivos)
-    # procesar(archivos)
+    procesar(archivos)
 
 if __name__ == "__main__":
     try:
