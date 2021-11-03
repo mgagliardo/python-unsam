@@ -1,18 +1,14 @@
 import os
-import sys
+from shutil import rmtree
 from datetime import datetime
 
-glob_carpeta_nueva = '../Data/imgs_procesadas'
+glob_carpeta_nueva = '../Data/ordenar/imgs_procesadas'
 
 def borrar_vacias(ruta):
     print("Borrando carpetas vacias..")
-    folders = list(os.walk(ruta))[1:]
-    for folder in folders:
-        nom_carpeta = folder[0]
-        contenido = folder[2]
-        if not contenido:
-            print(f"Borrando {nom_carpeta} ..")
-            os.rmdir(folder[0])
+    for (path, _, archivos) in os.walk(ruta):
+        if len(archivos) == 0:
+            rmtree(path)
 
 def get_archivos_png(directorio):
     archivos = []
@@ -30,7 +26,6 @@ def procesar_nombre(fname):
 def procesar(fname):
     try:
         fecha_mod, name = procesar_nombre(fname)
-        print(f"Renombrando Archivo {fname} a {name}")
         os.rename(fname, name)
         os.utime(name, (fecha_mod, fecha_mod))
     except FileNotFoundError:
