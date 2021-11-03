@@ -62,6 +62,7 @@ def calcular_historia_figus_pegadas(figus_total, figus_paquete):
 figus_total = 670
 figus_paquete = 5
 
+print(calcular_historia_figus_pegadas(figus_total, figus_paquete))
 plt.plot(calcular_historia_figus_pegadas(figus_total, figus_paquete))
 plt.xlabel("Cantidad de paquetes comprados.")
 plt.ylabel("Cantidad de figuritas pegadas.")
