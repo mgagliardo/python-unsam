@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def ord_seleccion(lista):
     """Ordena una lista de elementos según el método de selección.
        Pre: los elementos de la lista deben ser comparables.
@@ -89,12 +90,15 @@ def ord_burbujeo(lista):
 def generar_lista(N):
     return np.random.choice(range(1, 1001), size=N, replace=True)
 
+def generar_listas(Nmax):
+    l = [generar_lista(e) for e, _ in enumerate(range((Nmax)), start= 1)]
+    return l
+
 def experimento(N, k):
     ops_seleccion = 0.0
     ops_insercion = 0.0
     ops_burbujeo = 0.0
-    for i in range(k):
-        lista = generar_lista(N)
+    for lista in generar_listas(k):
         ops_seleccion += ord_seleccion(lista.copy())
         ops_insercion += ord_insercion(lista.copy())
         ops_burbujeo += ord_burbujeo(lista.copy())
@@ -104,3 +108,27 @@ def experimento(N, k):
         ops_insercion/k,
         ops_burbujeo/k
     )
+
+def experimento_vectores(Nmax):
+    comparaciones_seleccion = np.zeros(Nmax)
+    comparaciones_insercion = np.zeros(Nmax)
+    comparaciones_burbujeo = np.zeros(Nmax)
+    for i in range(Nmax):
+        comp_sel, comp_ins, comp_burb = experimento(Nmax, i+1)
+        comparaciones_seleccion[i] += comp_sel
+        comparaciones_insercion[i] += comp_ins
+        comparaciones_burbujeo[i] += comp_burb
+
+    rango = np.arange(Nmax) + 1
+    plt.plot(rango, comparaciones_seleccion, color='blue', label = 'Ordenamiento Seleccion')
+    plt.plot(rango, comparaciones_insercion, color='green', label = 'Ordenamiento Insercion')
+    plt.plot(rango, comparaciones_burbujeo, color='red', label = 'Ordenamiento Burbujeo')
+    plt.xlabel("Largo de la lista")
+    plt.ylabel("Cantidad de comparaciones")
+    plt.title("Complejidad del algoritmo")
+    plt.legend()
+    plt.show()
+
+
+if __name__ == '__main__':
+    experimento_vectores(150)
