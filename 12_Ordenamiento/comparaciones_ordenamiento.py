@@ -165,16 +165,16 @@ def experimento_vectores(Nmax):
     return comparaciones_seleccion, comparaciones_insercion, comparaciones_burbujeo, comparaciones_merge_sort
 
 
-# if __name__ == '__main__':
-#     Nmax = 100
-#     comparaciones_seleccion, comparaciones_insercion, comparaciones_burbujeo, comparaciones_merge_sort = experimento_vectores(Nmax)
-#     rango = np.arange(Nmax) + 1
-#     plt.plot(rango, comparaciones_seleccion, color='blue', label = 'Ordenamiento Seleccion')
-#     plt.plot(rango, comparaciones_insercion, color='green', label = 'Ordenamiento Insercion')
-#     plt.plot(rango, comparaciones_burbujeo, color='red', label = 'Ordenamiento Burbujeo')
-#     plt.plot(rango, comparaciones_merge_sort, color='magenta', label = 'Ordenamiento Merge Sort')
-#     plt.xlabel("Largo de la lista")
-#     plt.ylabel("Cantidad de comparaciones")
-#     plt.title("Complejidad del algoritmo")
-#     plt.legend()
-#     plt.show()
+if __name__ == '__main__':
+    Nmax = 100
+    comparaciones_seleccion, comparaciones_insercion, comparaciones_burbujeo, comparaciones_merge_sort = experimento_vectores(Nmax)
+    rango = np.arange(Nmax) + 1
+    plt.plot(rango, comparaciones_seleccion, color='blue', label = 'Ordenamiento Seleccion')
+    plt.plot(rango, comparaciones_insercion, color='green', label = 'Ordenamiento Insercion')
+    plt.plot(rango, comparaciones_burbujeo, color='red', label = 'Ordenamiento Burbujeo')
+    plt.plot(rango, comparaciones_merge_sort, color='magenta', label = 'Ordenamiento Merge Sort')
+    plt.xlabel("Largo de la lista")
+    plt.ylabel("Cantidad de comparaciones")
+    plt.title("Complejidad del algoritmo")
+    plt.legend()
+    plt.show()

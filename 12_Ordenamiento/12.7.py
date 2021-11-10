@@ -126,8 +126,7 @@ def generar_lista(N):
     return np.random.choice(range(1, 1001), size=N, replace=True)
 
 def generar_listas(Nmax):
-    l = [generar_lista(e) for e, _ in enumerate(range((Nmax)), start= 1)]
-    return l
+    return [generar_lista(e) for e, _ in enumerate(range((Nmax)), start= 1)]
 
 def experimento(N, k):
     ops_seleccion = 0.0
